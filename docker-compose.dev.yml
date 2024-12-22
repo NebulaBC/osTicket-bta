@@ -1,0 +1,35 @@
+version: '3.6'
+
+services:
+  osticket:
+    build: .
+    ports:
+      - 8080:80
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=changeme
+      - DB_PASS=changeme
+      - DB_NAME=changeme
+      - ADMIN_PASS=password1
+      - ADMIN_EMAIL=test@example.com
+      - ADMIN_USER=TestUser
+      - ADMIN_FIRSTNAME=test
+      - ADMIN_LASTNAME=test
+      - INSTALL_SECRET=123123123123123123123
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    links:
+      - mysql:mysql
+
+  mysql:
+    image: mariadb
+    volumes:
+      - ./mysql:/var/lib/mysql
+    tmpfs:
+      - /tmp
+      - /var/lock
+    environment:
+      - MYSQL_USER=changeme
+      - MYSQL_PASSWORD=changeme
+      - MYSQL_DATABASE=changeme
+      - MYSQL_ROOT_PASSWORD=changeme
