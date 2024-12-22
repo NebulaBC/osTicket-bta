@@ -29,8 +29,7 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px !important;
   line-height: 1.428571429;
-  color: #333333;
-  background-color: #ffffff;
+  /*background-color: #ffffff;*/
   margin: 0;
   padding: 0.9em;
   word-wrap: break-word;
@@ -180,7 +179,6 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
-  color: black;
 }
 .thread-body h1 small,
 .thread-body h2 small,

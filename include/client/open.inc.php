@@ -1,4 +1,5 @@
 <?php
+global $thisclient, $errors, $cfg;
 if(!defined('OSTCLIENTINC')) die('Access Denied!');
 $info=array();
 if($thisclient && $thisclient->isValid()) {

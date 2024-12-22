@@ -12,9 +12,13 @@ body {
   padding: 0;
 }
 
-body, input, select, textarea {
+body {
   font-family: sans-serif;
-  color: #000;
+  color: #ffffff;
+}
+
+input, select, textarea {
+  color: black;
 }
 
 b, strong {
@@ -26,12 +30,11 @@ blockquote {
 }
 
 hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 40px;
+  opacity: 1;
+  border-bottom: 0.1rem solid #434343;
+  border-top: 0.1rem solid #1e1d1f;
 }
 
 small {
@@ -63,10 +66,18 @@ label {
 }
 
 input, select, textarea {
-  font-size: 100%;
-  margin: 0;
-  vertical-align: baseline;
-  *vertical-align: middle;
+  margin-top: 10px;
+  border: none;
+  padding: 10px 10px 10px 10px;
+  background: #4b4a4d;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #5aa938;
 }
 
 input {

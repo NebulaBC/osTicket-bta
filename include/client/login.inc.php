@@ -29,7 +29,7 @@ if ($content) {
         <input id="passwd" placeholder="<?php echo __('Password'); ?>" type="password" name="lpasswd" size="30" maxlength="128" value="<?php echo $passwd; ?>" class="nowarn"></td>
     </div>
     <p>
-        <input class="btn" type="submit" value="<?php echo __('Sign In'); ?>">
+        <input class="button" type="submit" value="<?php echo __('Sign In'); ?>">
 <?php if ($suggest_pwreset) { ?>
         <a style="padding-top:4px;display:inline-block;" href="pwreset.php"><?php echo __('Forgot My Password'); ?></a>
 <?php } ?>
