@@ -19,5 +19,5 @@ include/mpdf/ttfontdata
 include/mpdf/tmp
 nbproject/
 
-# Ignore docker compose mysql data
+# Ignore development files
 mysql/
