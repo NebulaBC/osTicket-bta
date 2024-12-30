@@ -6,7 +6,7 @@ if (!$form->hasAnyVisibleFields($thisclient))
 
 $isCreate = (isset($options['mode']) && $options['mode'] == 'create');
 ?>
-    <tr><td colspan="2"><hr />
+    <tr><td colspan="2">
     <div class="form-header" style="margin-bottom:0.5em">
     <h3><?php echo Format::htmlchars($form->getTitle()); ?></h3>
     <div><?php echo Format::display($form->getInstructions()); ?></div>
@@ -34,14 +34,13 @@ $isCreate = (isset($options['mode']) && $options['mode'] == 'create');
         <tr>
             <td colspan="2" style="padding-top:10px;">
             <?php if (!$field->isBlockLevel()) { ?>
-                <label for="<?php echo $field->getFormName(); ?>"><span class="<?php
-                    if ($field->isRequiredForUsers()) echo 'required'; ?>">
+                <label class="form-label" for="_<?php echo $field->getFormName(); ?>">
                 <?php echo Format::htmlchars($field->getLocal('label')); ?>
             <?php if ($field->isRequiredForUsers() &&
                     ($field->isEditableToUsers() || $isCreate)) { ?>
                 <span class="error">*</span>
             <?php }
-            ?></span><?php
+            ?><?php
                 if ($field->get('hint')) { ?>
                     <br /><em style="color:gray;display:inline-block"><?php
                         echo Format::viewableImages($field->getLocal('hint')); ?></em>
