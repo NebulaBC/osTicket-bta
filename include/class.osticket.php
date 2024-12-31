@@ -73,6 +73,7 @@ class osTicket {
     }
 
     function isUpgradePending() {
+	    	return false;
 		foreach (DatabaseMigrater::getUpgradeStreams(UPGRADE_DIR.'streams/') as $stream=>$hash)
 			if (strcasecmp($hash,
 					$this->getConfig()->getSchemaSignature($stream)))
