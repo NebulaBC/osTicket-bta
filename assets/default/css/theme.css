@@ -570,8 +570,6 @@ body {
 #reply {
   margin-top: 20px;
   padding: 10px 5px;
-  background: #f9f9f9;
-  border: 1px solid #ccc;
 }
 #reply h2 {
   margin-bottom: 10px;
@@ -759,9 +757,6 @@ a.refresh {
   background-position: 5px 50%;
   background-repeat: no-repeat;
   background-image: url('../images/icons/refresh.png');
-}
-.infoTable {
-  background: #F4FAFF;
 }
 .infoTable th {
   text-align: left;
