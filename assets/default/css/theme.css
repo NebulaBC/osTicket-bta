@@ -483,6 +483,7 @@ body {
 }
 .avatar {
   height: 50px;
+  width: 50px;
   border-radius: 50px;
   margin-right: 5px;
 }
@@ -845,6 +846,7 @@ a.refresh {
 }
 #ticketThread .thread-event .faded .avatar {
   height: 20px;
+  width: 20px;
   border-radius: 50px;
   margin-right: 5px;
 }
