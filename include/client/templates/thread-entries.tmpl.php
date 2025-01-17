@@ -20,6 +20,7 @@ if ($this->getObjectType() == 'T')
     $ticket = Ticket::lookup($tid);
 ?>
 <div id="<?php echo $htmlId; ?>" data-thread-id="<?php echo $this->getId(); ?>">
+    <div id="timeline"></div>
 <?php
 if (count($entries)) {
     $buckets = ThreadEntry::sortEntries($entries, $ticket);

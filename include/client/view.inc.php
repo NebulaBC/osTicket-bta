@@ -30,9 +30,10 @@ if ($thisclient && $thisclient->isGuest()
 
 <?php } ?>
 
-<table width="800" cellpadding="1" cellspacing="0" border="0" id="ticketInfo">
+<table cellpadding="1" cellspacing="0" border="0" id="ticketInfo">
     <tr>
         <td colspan="2" width="100%">
+            <div class="d-flex justify-content-between">
             <h1>
                 <a href="tickets.php?id=<?php echo $ticket->getId(); ?>" title="<?php echo __('Reload'); ?>"><i class="refresh icon-refresh"></i></a>
                 <b>
@@ -40,18 +41,19 @@ if ($thisclient && $thisclient->isGuest()
                     echo $subject_field->display($ticket->getSubject()); ?>
                 </b>
                 <small>#<?php echo $ticket->getNumber(); ?></small>
-<div class="pull-right">
-      <a class="action-button" href="tickets.php?a=print&id=<?php
-          echo $ticket->getId(); ?>"><i class="icon-print"></i> <?php echo __('Print'); ?></a>
-
-<?php if ($ticket->hasClientEditableFields()
-        // Only ticket owners can edit the ticket details (and other forms)
-        && $thisclient->getId() == $ticket->getUserId()) { ?>
-                <a class="action-button" href="tickets.php?a=edit&id=<?php
-                     echo $ticket->getId(); ?>"><i class="icon-edit"></i> <?php echo __('Edit'); ?></a>
-<?php } ?>
-</div>
             </h1>
+            <div class="pull-right">
+                <a class="action-button" href="tickets.php?a=print&id=<?php
+                echo $ticket->getId(); ?>"><i class="icon-print"></i> <?php echo __('Print'); ?></a>
+
+                <?php if ($ticket->hasClientEditableFields()
+                    // Only ticket owners can edit the ticket details (and other forms)
+                    && $thisclient->getId() == $ticket->getUserId()) { ?>
+                    <a class="action-button" href="tickets.php?a=edit&id=<?php
+                    echo $ticket->getId(); ?>"><i class="icon-edit"></i> <?php echo __('Edit'); ?></a>
+                <?php } ?>
+            </div>
+            </div>
         </td>
     </tr>
     <tr>

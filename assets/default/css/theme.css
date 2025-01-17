@@ -473,6 +473,36 @@ body {
 #kb-search #breadcrumbs #breadcrumbs a {
   color: #555;
 }
+#ticketInfo {
+  width: 100%;
+  margin: 20px 0;
+}
+.avatar {
+  height: 50px;
+  border-radius: 50px;
+  margin-right: 5px;
+}
+.thread-event {
+  align-items: center;
+}
+.thread-event .faded {
+  background: #29282a;
+}
+.thread-event .faded .avatar {
+  height: 20px;
+  border-radius: 50px;
+  margin-right: 5px;
+}
+.thread-event .icon {
+  display: flex;
+  width: 20px;
+  height: 25px;
+  background: #29282a;
+  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
 #ticketForm,
 #clientLogin {
   padding: 40px;
@@ -761,6 +791,17 @@ a.refresh {
 .infoTable th {
   text-align: left;
 }
+#ticketThread {
+  position: relative;
+}
+#ticketThread::before {
+  z-index: -1;
+  content: "";
+  border-left: 2px dotted gray;
+  margin-left: 78px;
+  height: 90%;
+  position: absolute;
+}
 #ticketThread table {
   margin-top: 10px;
   border: 1px solid #aaa;
@@ -779,6 +820,39 @@ a.refresh {
 }
 #ticketThread table td {
   padding: 5px;
+}
+#ticketThread .thread-box {
+  background-color: #29282a;
+  min-height: 100px;
+  border: #49484b 1px solid;
+  margin-bottom: 25px ;
+}
+#ticketThread .thread-box .header {
+  background: #49484b;
+  padding: 10px 15px;
+}
+#ticketThread .thread-event {
+  margin-left: 70px;
+  margin-bottom: 25px;
+  align-items: center;
+}
+#ticketThread .thread-event .faded {
+  background: #29282a;
+}
+#ticketThread .thread-event .faded .avatar {
+  height: 20px;
+  border-radius: 50px;
+  margin-right: 5px;
+}
+#ticketThread .thread-event .icon {
+  display: flex;
+  width: 20px;
+  height: 25px;
+  background: #29282a;
+  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
 }
 #ticketThread .message th {
   background: #d8efff;
