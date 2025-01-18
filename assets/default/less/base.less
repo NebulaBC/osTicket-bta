@@ -165,6 +165,8 @@ h3 {
     -webkit-border-radius: 2px;
     border-bottom: 3px solid #376921;
     border-top: 3px solid #86c553;
+    border-left: 0 solid #376921;
+    border-right: 0 solid #86c553;
     position: relative;
     cursor: pointer;
     font-family:helvetica, arial, sans-serif;
@@ -175,4 +177,29 @@ h3 {
       background-color: #529c33;
       color: #ffffff;
     }
+}
+
+.action-button {
+  padding: 5px;
+  border: 1px #59a838 solid;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #59a838;
+  background: #29282a;
+  transition: all 0.3s ease;
+  &:hover{
+    background-color: #59a838;
+    color: #ffffff;
+  }
+}
+
+.select2-container--default {
+  input {
+    background-color: white;
+    color: black;
+    &:focus {
+      box-shadow: 0 0 0 3px #5897fb;
+    }
+  }
+  color: black;
 }
