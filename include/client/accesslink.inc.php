@@ -10,7 +10,7 @@ else
     $button = __("View Ticket");
 ?>
 <h1><?php echo __('Check Ticket Status'); ?></h1>
-<p><?php
+<p class="text-muted"><?php
 echo __('Please provide your email address and a ticket number.');
 if ($cfg->isClientEmailVerificationRequired())
     echo ' '.__('An access link will be emailed to you.');
