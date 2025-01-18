@@ -9,7 +9,7 @@ $isCreate = (isset($options['mode']) && $options['mode'] == 'create');
     <tr><td colspan="2">
     <div class="form-header" style="margin-bottom:0.5em">
     <h3><?php echo Format::htmlchars($form->getTitle()); ?></h3>
-    <div><?php echo Format::display($form->getInstructions()); ?></div>
+    <div class="text-muted"><?php echo Format::display($form->getInstructions()); ?></div>
     </div>
     </td></tr>
     <?php

@@ -7,8 +7,15 @@
     </div>
 <div id="overlay"></div>
 <div id="loading">
-    <h4><?php echo __('Please Wait!');?></h4>
-    <p><?php echo __('Please wait... it will take a second!');?></p>
+    <div class="d-flex">
+        <div class="spinner-border me-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div>
+            <h4><?php echo __('Please Wait!');?></h4>
+            <p class="text-muted"><?php echo __('Please wait... it will take a second!');?></p>
+        </div>
+    </div>
 </div>
 <?php
 if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { ?>

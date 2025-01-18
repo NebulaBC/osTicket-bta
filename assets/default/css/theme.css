@@ -28,7 +28,6 @@ blockquote {
 }
 hr {
   margin-top: 5px;
-  margin-bottom: 40px;
   opacity: 1;
   border-bottom: 0.1rem solid #434343;
   border-top: 0.1rem solid #1e1d1f;
@@ -59,7 +58,7 @@ label {
 input,
 select,
 textarea {
-  margin-top: 10px;
+  margin-top: 5px;
   border: none;
   padding: 10px 10px 10px 10px;
   background: #4b4a4d;
@@ -129,13 +128,38 @@ a:active {
 h1 {
   font-weight: 700;
   font-size: 20px;
+  margin-bottom: 5px;
 }
 h3 {
+  font-weight: 700;
   font-size: 16px;
+  margin-bottom: 5px;
 }
 h2 {
   font-size: 16px;
+  margin-bottom: 5px;
   color: #999;
+}
+#loading {
+  border: 3px solid #59a838;
+  border-radius: 3px;
+  padding: 20px;
+  width: 300px;
+  height: 100px;
+  background: #29282a;
+  position: fixed;
+  display: none;
+  z-index: 3000;
+}
+#loading .d-flex {
+  align-items: center;
+  color: #59a838;
+}
+#loading h4 {
+  font-weight: 700;
+  margin: 3px 0 0 0;
+  padding: 0;
+  color: #58a738;
 }
 /* Helpers */
 .centered {
@@ -195,9 +219,7 @@ h2 {
 /* Alerts & Notices */
 #msg_notice {
   color: #0a0;
-  margin: 0;
-  padding: 5px 10px 5px 36px;
-  height: 16px;
+  padding: 10px;
   line-height: 16px;
   margin-bottom: 10px;
   border: 1px solid #0a0;
@@ -205,9 +227,7 @@ h2 {
 }
 #msg_warning {
   color: #f26522;
-  margin: 0;
-  padding: 5px 10px 5px 36px;
-  height: 16px;
+  padding: 10px;
   line-height: 16px;
   margin-bottom: 10px;
   border: 1px solid #f26522;
@@ -215,7 +235,6 @@ h2 {
 }
 #msg_error {
   color: #a00;
-  margin: 0;
   padding: 10px;
   line-height: 16px;
   margin-bottom: 10px;
@@ -237,41 +256,36 @@ h2 {
 .error input {
   border: 1px solid #f00;
 }
+.text-muted {
+  color: #919193 !important;
+}
 .button,
 .button:visited,
 .btn {
-  background-color: #5aa938;
+  background-color: #59a838;
   display: inline-block;
   font-size: 16px;
-  padding: 16px 32px 16px 32px;
+  padding: 8px 32px 8px 32px;
   text-align: center;
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
   text-decoration: none;
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  border-bottom: 0.25rem solid #376921;
-  border-top: 0.25rem solid #86c553;
+  border-bottom: 3px solid #376921;
+  border-top: 3px solid #86c553;
   position: relative;
   cursor: pointer;
   font-family: helvetica, arial, sans-serif;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
 }
-.button,
-.button:visited,
-.green.button,
-.green.button:visited {
-  background-color: #5aa938;
-}
-.green.button:hover {
-  background-color: #67bd42;
-}
-.blue.button,
-.blue.button:visited {
-  background-color: #5aa938;
-}
-.blue.button:hover {
-  background-color: #67bd42;
+.button:hover,
+.button:visited:hover,
+.btn:hover {
+  background-color: #529c33;
+  color: #ffffff;
 }
 body {
   background: #29282a;
@@ -330,6 +344,7 @@ body {
   padding-top: 20px;
 }
 #footer {
+  margin-top: 15px;
   background-color: #1e1d1f;
   color: gray;
   text-align: center;
@@ -510,9 +525,6 @@ body {
 }
 #ticketForm,
 #clientLogin {
-  padding: 40px;
-  border-radius: 5px;
-  background: #1e1d1f;
   margin-bottom: 10px;
 }
 #ticketForm table,
@@ -660,7 +672,6 @@ body {
 .redactor-box.redactor-styles-on .redactor-toolbar.redactor-toolbar a:hover,
 .redactor-box.redactor-styles-on .redactor-toolbar.redactor-toolbar a:active {
   color: #85c352;
-  background: #4a494c;
 }
 .redactor-styles {
   color: #fdfdfd;

@@ -33,10 +33,11 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
 
 ?>
 <h1><?php echo __('Open a New Ticket');?></h1>
-<p><?php echo __('Please fill in the form below to open a new ticket.');?></p>
+<p class="text-muted"><?php echo __('Please fill in the form below to open a new ticket.');?></p>
 <form id="ticketForm" method="post" action="open.php" enctype="multipart/form-data">
   <?php csrf_token(); ?>
   <input type="hidden" name="a" value="open">
+    <h3><?php echo __('User Details'); ?></h3>
   <table width="800" cellpadding="1" cellspacing="0" border="0">
     <tbody>
 <?php
@@ -46,17 +47,17 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
             $uform->render(array('staff' => false, 'mode' => 'create'));
         }
         else { ?>
-            <tr><td colspan="2"><hr /></td></tr>
-        <tr><td><?php echo __('Email'); ?>:</td><td><?php
+        <tr><td class="fw-bold" width="100"><?php echo __('Email'); ?>:</td><td><?php
             echo $thisclient->getEmail(); ?></td></tr>
-        <tr><td><?php echo __('Client'); ?>:</td><td><?php
+        <tr><td class="fw-bold"  width="100"><?php echo __('Client'); ?>:</td><td><?php
             echo Format::htmlchars($thisclient->getName()); ?></td></tr>
         <?php } ?>
     </tbody>
     <tbody>
-    <tr><td colspan="2"><hr />
+    <tr><td colspan="2">
         <div class="form-header" style="margin-bottom:0.5em">
-        <b><?php echo __('Help Topic'); ?></b>
+        <h3><?php echo __('Help Topic'); ?></h3>
+        <div class="text-muted">Select a Help Topic</div>
         </div>
     </td></tr>
     <tr>

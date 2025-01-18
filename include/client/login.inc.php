@@ -16,7 +16,7 @@ if ($content) {
 
 ?>
 <h1><?php echo Format::display($title); ?></h1>
-<p><?php echo Format::display($body); ?></p>
+<p class="text-muted"><?php echo Format::display($body); ?></p>
 <form action="login.php" method="post" id="clientLogin">
     <?php csrf_token(); ?>
 <div style="display:table-row">
