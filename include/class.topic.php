@@ -393,7 +393,7 @@ implements TemplateVariable, Searchable {
       // primary, the list may need to be sorted. Caching is ok here,
       // because the locale is not going to be changed within a single
       // request.
-      if ($localize && $cfg->getTopicSortMode() == self::SORT_ALPHA)
+      if ($localize && (!$cfg ||$cfg->getTopicSortMode() == self::SORT_ALPHA))
           return Internationalization::sortKeyedList($requested_names);
 
       return $requested_names;

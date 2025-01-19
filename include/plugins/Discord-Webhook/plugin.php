@@ -1,11 +1,11 @@
 <?php
 
 return array(
-    'id'          => 'osticket:teams',
+    'id'          => 'osticket:discord',
     'version'     => '0.1',
     'name'        => 'Discord Webhook notifier',
-    'author'      => 'Ivan Pavlović',
+    'author'      => 'SkyDeckAGoGo | Ivan Pavlović',
     'description' => 'Notify Discord on new ticket.',
     'url'         => 'https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin',
-    'plugin'      => 'teams.php:TeamsPlugin',
+    'plugin'      => 'discord.php:DiscordPlugin',
 );

@@ -125,7 +125,7 @@ auto_assign:
       - title: Manage Agents
         href: /scp/staff.php
       - title: Manage Teams
-        href: /scp/teams.php
+        href: /scp/discord.php
 
 help_topic:
     title: Help Topic

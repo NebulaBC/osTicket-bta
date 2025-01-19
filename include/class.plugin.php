@@ -441,6 +441,7 @@ class PluginManager {
      * Which is a simple semicolon separated key-value pair string with the
      * following keys
      *
+     *
      *   Key | Description
      *  :----|:---------------------------------------------------
      *   v   | Algorithm version

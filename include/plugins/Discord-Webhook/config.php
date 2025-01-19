@@ -2,7 +2,7 @@
 
 require_once INCLUDE_DIR . 'class.plugin.php';
 
-class TeamsPluginConfig extends PluginConfig {
+class DiscordPluginConfig extends PluginConfig {
 
     // Provide compatibility function for versions of osTicket prior to
     // translation support (v1.9.4)
@@ -32,38 +32,27 @@ class TeamsPluginConfig extends PluginConfig {
         list ($__, $_N) = self::translate();
 
         return array(
-            'teams'                      => new SectionBreakField(array(
-                'label' => $__('Teams notifier'),
-                'hint'  => $__('Readme first: https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin')
+            'discord'                      => new SectionBreakField(array(
+                'label' => $__('Discord Webhook notifier'),
+                'hint'  => $__('Forked by Mak from: https://github.com/ipavlovi/osTicket-Microsoft-Teams-plugin')
             )),
-            'teams-webhook-url'          => new TextboxField(array(
+            'discord-webhook-url'          => new TextboxField(array(
                 'label'         => $__('Webhook URL'),
+                'required' => true,
                 'configuration' => array(
                     'size'   => 100,
                     'length' => 700
                 ),
             )),
-            'teams-regex-subject-ignore' => new TextboxField([
-                'label'         => $__('Ignore when subject equals regex'),
-                'hint'          => $__('Auto delimited, always case-insensitive'),
-                'configuration' => [
-                    'size'   => 30,
-                    'length' => 200
-                ],
-            ]),
-			'teams-csv-departmentid' => new TextboxField([
-				'label'         => $__('Ignore department ids'),
-				'hint'          => $__('Comma delimited, ints'),
-				'configuration' => [
-					'size'   => 30,
-					'length' => 200
-				],
-			]),
-            'teams-message-display' => new BooleanField([
-                'label' => $__('Display ticket message body in notification.'),
-                'hint' => $__('Uncheck to hide messages.'),
-                'default' => TRUE
-            ])
+            'discord-topic-id' => new ChoiceField(array(
+                'default' => 0,
+                'required' => true,
+                'label' => 'Help Desk topic to listen to',
+                'hint' => 'i.e. Support, Bug reports, etc..',
+                'choices' =>
+                    array(0 => '— '.'Topic to use'.' —')
+                    + Topic::getHelpTopics(),
+            )),
         );
     }
 

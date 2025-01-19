@@ -170,7 +170,7 @@ foreach (Topic::getHelpTopics(true) as $id=>$name) {
 </div>
 
 
-<h1 style="margin:10px 0">
+<div style="margin:10px 0">
     <a href="<?php echo Http::refresh_url(); ?>"
         ><i class="refresh icon-refresh"></i>
     <?php echo __('Tickets'); ?>
@@ -199,8 +199,8 @@ if ($closedTickets) {?>
 <?php } ?>
     </small>
 </div>
-</h1>
-<table id="ticketTable" width="800" border="0" cellspacing="0" cellpadding="0">
+</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
     <caption><?php echo $showing; ?></caption>
     <thead>
         <tr>

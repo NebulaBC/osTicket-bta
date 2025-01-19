@@ -8,44 +8,46 @@ require_once(INCLUDE_DIR . 'class.config.php');
 require_once(INCLUDE_DIR . 'class.format.php');
 require_once('config.php');
 
-class TeamsPlugin extends Plugin {
+class DiscordPlugin extends Plugin {
 
-    var $config_class = "TeamsPluginConfig";
-    static $pluginInstance = null;
+    var $config_class = "DiscordPluginConfig";
+    var $instanceConfig = null;
 
-    private function getPluginInstance(?int $id){
-	if($id && ($i = $this->getInstance($id)))
-	    return $i;
-
-	return $this->getInstances()->first();
-    }
     /**
      * The entrypoint of the plugin, keep short, always runs.
      */
     function bootstrap() {
-	self::$pluginInstance = self::getPluginInstance(null);
+	    $pluginInstance = new DiscordPlugin();
+        $pluginInstance->instanceConfig = $this->getConfig();
 
         // Listen for osTicket to tell us it's made a new ticket or updated
         // an existing ticket:
 
-        Signal::connect('ticket.created', array($this, 'onTicketCreated'));
-        Signal::connect('threadentry.created', array($this, 'onTicketUpdated'));
+        Signal::connect('ticket.created', array($pluginInstance, 'onTicketCreated'));
+        Signal::connect('threadentry.created', array($pluginInstance, 'onTicketUpdated'));
     }
 
     function onTicketCreated(Ticket $ticket) {
 	global $cfg;
-        
+
 	if(!$cfg instanceof OsTicketConfig){
 	    error_log("Webhook Plugin calls too early.");
 	}
 
-	$type = 'Issue created: ';
+    $help_topic = $this->getHelpTopic();
+    if ($ticket->getHelpTopic() != $help_topic->getFullName()) {
+        // Filters out tickets not pertaining to the instance's set help topic.
+        error_log("no.");
+        return;
+    }
+
+	$type = 'Ticket created: ';
 
 	$this->sendToWebhook($ticket, $type);
     }
 
     function onTicketUpdated(ThreadEntry $entry) {
-		$type = 'Issue Updated: ';
+		$type = 'Ticket Updated: ';
 		if (!$entry instanceof MessageThreadEntry) {
 		    // this was a reply or a system entry.. not a message from a user
 		    return;
@@ -57,6 +59,12 @@ class TeamsPlugin extends Plugin {
 		    // Admin created ticket's won't work here.
 		    return;
 		}
+
+        $help_topic = $this->getHelpTopic();
+        if (!$ticket->getHelpTopic() !== $help_topic->getFullName()) {
+            // Filters out tickets not pertaining to the instance's set help topic.
+            return;
+        }
 
 		// Check to make sure this entry isn't the first (ie: a New ticket)
 		$first_entry = $ticket->getMessages()[0];
@@ -79,17 +87,17 @@ class TeamsPlugin extends Plugin {
      * @throws \Exception
      */
     function sendToWebhook(Ticket $ticket, $type) {
-	global $ost,$cfg;
+	    global $ost,$cfg;
 
-	if(!$cfg instanceof OsTicketConfig){
-	    error_log("Webhook Plugin calls too early.");
-	    return;
-	}
+        if(!$cfg instanceof OsTicketConfig){
+            error_log("Webhook Plugin calls too early.");
+            return;
+        }
 
-	$url=$this->getConfig(self::$pluginInstance)->get('teams-webhook-url');
+        $url = $this->instanceConfig->get('discord-webhook-url');
 
         if (!$url) {
-            $ost->logError('Teams Plugin not configured', 'You need to read the Readme and configure a webhook URL before using this.');
+            $ost->logError('Discord Plugin not configured', 'You need to read the Readme and configure a webhook URL before using this.');
         }
 
 		// Build the payload with the formatted data:
@@ -121,7 +129,7 @@ class TeamsPlugin extends Plugin {
             }
         } catch (\Exception $e) {
             $ost->logError('Webhook posting issue!', $e->getMessage(), true);
-            error_log('Error posting to Teams. ' . $e->getMessage());
+            error_log('Error posting to Webhook. ' . $e->getMessage());
         } finally {
             curl_close($ch);
         }
@@ -143,6 +151,14 @@ class TeamsPlugin extends Plugin {
         // thread entries etc..
         return Ticket::lookup(array(
             'ticket_id' => $ticket_id
+        ));
+    }
+
+    function getHelpTopic(): Topic {
+        $help_topic_id = $this->instanceConfig->get('discord-topic-id');
+        // Fetch help topic assigned to instance via the config.
+        return Topic::lookup(array(
+            'topic_id' => $help_topic_id
         ));
     }
 
