@@ -1,6 +1,6 @@
 <?php
 /*********************************************************************
-    discord.php
+    teams.php
 
     Evertything about teams
 

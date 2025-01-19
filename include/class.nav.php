@@ -269,7 +269,7 @@ class AdminNav extends StaffNav{
                     break;
                 case 'staff':
                     $subnav[]=array('desc'=>__('Agents'),'href'=>'staff.php','iconclass'=>'users');
-                    $subnav[]=array('desc'=>__('Teams'),'href'=>'discord.php','iconclass'=>'teams');
+                    $subnav[]=array('desc'=>__('Teams'),'href'=>'teams.php','iconclass'=>'teams');
                     $subnav[]=array('desc'=>__('Roles'),'href'=>'roles.php','iconclass'=>'lists');
                     $subnav[]=array('desc'=>__('Departments'),'href'=>'departments.php','iconclass'=>'departments');
                     break;
