@@ -8,5 +8,9 @@ RUN apt install -y git \
                 openssl \
                 tar \
                 wget \
-                zlib1g
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+                zlib1g \
+		libc-client-dev \
+		libkrb5-dev
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
+RUN docker-php-ext-install mysqli imap
+RUN docker-php-ext-enable mysqli imap
