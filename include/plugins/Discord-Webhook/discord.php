@@ -61,8 +61,9 @@ class DiscordPlugin extends Plugin {
 		}
 
         $help_topic = $this->getHelpTopic();
-        if (!$ticket->getHelpTopic() !== $help_topic->getFullName()) {
+        if ($ticket->getHelpTopic() != $help_topic->getFullName()) {
             // Filters out tickets not pertaining to the instance's set help topic.
+            error_log("no.");
             return;
         }
 
@@ -72,7 +73,7 @@ class DiscordPlugin extends Plugin {
 		    return;
 		}
 
-		$this->sendToWebhook($ticket, $type, 'warning');
+		$this->sendToWebhook($ticket, $type);
 	    }
 
     /**
