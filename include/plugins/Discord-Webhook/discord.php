@@ -121,7 +121,7 @@ class DiscordPlugin extends Plugin {
                 throw new \Exception($url . ' - ' . curl_error($ch));
             } else {
                 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                if ($statusCode != '200') {
+                if ($statusCode != '200' && $statusCode != '204') {
                     throw new \Exception(
                         'Error sending to: ' . $url
                         . ' Http code: ' . $statusCode
