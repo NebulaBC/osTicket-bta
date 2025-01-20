@@ -24,6 +24,7 @@ class DiscordPlugin extends Plugin {
         // an existing ticket:
 
         Signal::connect('ticket.created', array($pluginInstance, 'onTicketCreated'));
+        Signal::connect('task.created', array($pluginInstance, 'onTaskCreated'));
         Signal::connect('threadentry.created', array($pluginInstance, 'onTicketUpdated'));
     }
 
@@ -44,6 +45,25 @@ class DiscordPlugin extends Plugin {
 	$type = 'Ticket created: ';
 
 	$this->sendToWebhook($ticket, $type);
+    }
+
+    function onTaskCreated(Task $task) {
+        global $cfg;
+
+        if(!$cfg instanceof OsTicketConfig){
+            error_log("Webhook Plugin calls too early.");
+        }
+
+        $help_topic = $this->getHelpTopic();
+        if ($task->getHelpTopic() != $help_topic->getFullName()) {
+            // Filters out tickets not pertaining to the instance's set help topic.
+            error_log("no.");
+            return;
+        }
+
+        $type = 'Ticket created: ';
+
+        $this->sendToWebhook($task, $type);
     }
 
     function onTicketUpdated(ThreadEntry $entry) {
@@ -217,7 +237,7 @@ class DiscordPlugin extends Plugin {
      * @param null $type
      * @return false|string
      */
-    private function createJsonMessage($ticket, $type = null)
+    private function createJsonMessageTicket($ticket, $type = null)
     {
         global $cfg;
         $timestamp = date("c", strtotime("now"));
@@ -259,6 +279,77 @@ class DiscordPlugin extends Plugin {
                         [
                             "name" => "Ticket Type",
                             "value" => $ticket->getHelpTopic(),
+                            "inline" => true
+                        ]
+                        // Etc..
+                    ],
+
+                    // Footer
+                    "footer" => [
+                        "text" => $cfg->getUrl(),
+                        "icon_url" => $this->get_gravatar($ticket->getEmail()),
+                    ],
+
+                    // Author
+                    "author" => [
+                        "name" => "BTA! Support",
+                        "url" => $this->get_gravatar($ticket->getEmail()),
+                    ],
+                ]
+            ]];
+
+        return json_encode($message, JSON_UNESCAPED_SLASHES);
+
+    }
+
+    /**
+     * @param $task
+     * @param string $color
+     * @param null $type
+     * @return false|string
+     */
+    private function createJsonMessageTask($task, $type = null)
+    {
+        global $cfg;
+        $timestamp = date("c", strtotime("now"));
+        //Prepare message array to convert to json
+        $message = [
+            // Username
+            "username" => "BTA! Support",
+
+            // Avatar URL.
+            // Uncoment to replace image set in webhook
+            "avatar_url" => $this->get_gravatar($task->getStaff()->getEmail()),
+
+            // Text-to-speech
+            "tts" => false,
+
+            // File upload
+            // "file" => "",
+
+            // Embeds Array
+            "embeds" => [
+                [
+                    // Embed Title
+                    "title" =>  $this->format_text($type . $task->getTitle()),
+
+                    // Embed Type
+                    "type" => "rich",
+
+                    // URL of title link
+                    "url" => $cfg->getUrl() . '/scp/tickets.php?id=' . $task->getId(),
+
+                    // Timestamp of embed must be formatted as ISO8601
+                    "timestamp" => $timestamp,
+
+                    // Embed left border color in HEX
+                    "color" => hexdec( "5aa938" ),
+
+                    // Additional Fields array
+                    "fields" => [
+                        [
+                            "name" => "Ticket Type",
+                            "value" => $ticket->getDept(),
                             "inline" => true
                         ]
                         // Etc..
